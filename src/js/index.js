@@ -370,8 +370,8 @@ function openTime() {
         confirmExchange.click(() => {
             let _v = addInput.val();
             if ((/(^[1-9]\d*$)/.test(_v))) {
-                // if (_v < tokenMaxNum) {
-                if (true) {
+                if (_v < tokenMaxNum) {
+                // if (true) {
                     addDestruction.hide();
                     loading.show();
                     hpContract.methods.addLuck(_v).send({from: fromAddr}).then((data) => {
