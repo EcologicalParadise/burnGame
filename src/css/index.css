@@ -1,0 +1,348 @@
+html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input, textarea, th, td, select {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+html {
+    font-size: 10px;
+}
+
+* {
+    box-sizing: border-box;
+}
+body {
+    background-image: url("./../img/bg-m.png");
+    background-size: 100%;
+    color: white;
+}
+.head {
+    height: 12rem;
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    justify-content: space-between;
+}
+.tm-site-branding {
+   padding: 3rem;
+}
+.tm-site-branding img {
+    width: 6rem;
+    height: 6rem;
+}
+.user {
+    height: 12rem;
+    padding: 3rem 3rem 0 0;
+    font-size: 1rem;
+    line-height: 2rem;
+}
+.luck-mes {
+    padding: 15px 0;
+    height: 80px;;
+    background-color: #4caf50;
+    border-radius: 15px;
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+}
+.luck-lp{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    padding: 15px 0;
+    font-size: 1.5rem;
+}
+.activity-name {
+    font-size: 2rem;
+    text-align: center;
+    padding: 35px 0 0 0;
+}
+.activity-item {
+    background-color: #01481d;
+    width: 90%;
+    height: 350px;
+    border-radius: 15px;
+    margin: 15px auto;
+    padding: 25px 15px;
+    display: flex;
+    flex-flow: column nowrap;
+}
+.activity-logo img {
+    height: 10rem;
+}
+.activity-logo {
+   display: flex;
+   justify-content: center;
+}
+.activity-time {
+    padding: 15px 0;
+    text-align: center;
+    font-size: 1.2rem;
+}
+.activity-time-w {
+    color: #ffbf01;
+    font-weight: bold;
+}
+
+.btn-1 {
+box-sizing: border-box;
+border-radius: 15px;
+color: white;
+font-size: 12px;
+outline: none;
+border: 0 solid #ffffff;
+background: #ffc107;
+box-shadow: 1px 1px 5px rgb(0 0 0 / 13%);
+cursor: pointer;
+padding: 7px 20px;
+margin: 0 auto;
+}
+.btn-1:hover {
+background: #f6be15;
+}
+.btn-1:active {
+background: #ffc107;
+}
+
+.btn-2 {
+    box-sizing: border-box;
+    border-radius: 15px;
+    color: black;
+    font-size: 12px;
+    outline: none;
+    border: 0 solid #ffffff;
+    background: #ffffff;
+    box-shadow: 1px 1px 5px rgb(0 0 0 / 13%);
+    cursor: pointer;
+    padding: 7px 20px;
+    margin: 0 auto;
+}
+.btn-3 {
+    box-sizing: border-box;
+    border-radius: 10px;
+    color: white;
+    font-size: 12px;
+    outline: none;
+    border: 0 solid #ffffff;
+    background: #ffc107;
+    box-shadow: 1px 1px 5px rgb(0 0 0 / 13%);
+    cursor: pointer;
+    padding: 7px 20px;
+    margin: 0 auto;
+}
+.btn-4 {
+    box-sizing: border-box;
+    border-radius: 10px;
+    color: white;
+    font-size: 12px;
+    outline: none;
+    border: 0 solid #ffffff;
+    background: #ffc107;
+    box-shadow: 1px 1px 5px rgb(0 0 0 / 13%);
+    cursor: pointer;
+    padding: 3px 5px;
+    margin: 0 auto;
+}
+.btn-c {
+    box-sizing: border-box;
+    border-radius: 15px;
+    color: white;
+    font-size: 24px;
+    outline: none;
+    border: 0 solid #ffffff;
+    background: transparent;
+    cursor: pointer;
+    margin: 0 auto;
+    font-family: iconfont;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.activity-explain {
+    padding: 15px 36px;  
+    text-align: center;  
+    line-height: 20px;
+}
+.history-dog {
+    width: 90%;
+    /* height: 350px; */
+    border-radius: 15px;
+    margin: 44px auto;
+    padding: 25px 15px;
+    display: flex;
+    flex-flow: column nowrap;
+    background-color: #2e121238;
+}
+.activity-name1 {
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 15px 0 0 0;
+}
+
+.history-dog-item {
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 15px 0 15px 5%;
+}
+.history-num {
+    padding: 0 9px 0 0;
+    display: flex;
+    align-items: center;
+}
+.mask{
+    width: 100%;
+    height: 100%;
+    background-color: #000000b0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: none;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+   
+}
+.bd-hide {
+    overflow: hidden;
+}
+.add-destruction {
+    position: relative;
+    width: 280px;
+    height: 300px;
+    border-radius: 15px;
+    background-color: #01481d;
+    padding: 25px 0 0 0;
+}
+.destruction-input {
+    padding: 5px 5px 15px 15px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+.destruction-input-i {
+    display: flex;
+    position: relative;
+    align-items: center;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.destruction-input-i button {
+    margin-right: 3px;
+}
+.destruction-input input {
+    outline: none;
+    border-radius: 10px;
+    height: 32px;
+    width: 124px;
+    border: none;
+    font-size: 15px;
+    padding-left: 10px;
+    letter-spacing: 1px;
+}
+.destruction-text {
+    text-align: center;
+    padding: 25px 0 0 0;
+}
+.destruction-get {
+    text-align: center;
+    padding: 10px 0 0 0;
+}
+.destruction-get a {
+    color: white;
+}
+
+.destruction-t1 {
+    text-align: center;
+    padding: 15px 0 3px 0;
+}
+.destruction-t1 span {
+    color: tomato;
+    font-weight: bold;
+}
+.destruction-tip {
+    color: #ff9800;
+    position: absolute;
+    top: 42px;
+    left: 26px;
+    display: none;
+    font-size: 1.2rem;
+}
+.destruction-tip1{
+    color: #ffc107;
+    position: absolute;
+    top: 42px;
+    left: 41%;
+    display: none;
+    font-size: 1.2rem;
+}
+/* .scs {
+    position:fixed;
+    width: 100%;
+    height: 25px;
+    top: 15px;
+    z-index: 10;
+    margin: 0 auto;
+    background-color: transparent;
+}
+.scs-tip {
+    background-color: royalblue;
+    width: 100px;
+    height: 25px;
+    margin: 0 auto;
+} */
+
+.loading {
+    display: none;
+    position: relative;
+    width: 230px;
+    height: 222px;
+    border-radius: 15px;
+    background-color: #01481d;
+    padding: 25px 0 0 0;
+}
+/* .loading-ing {
+    
+} */
+.loading-ing p {
+    text-align: center;
+}
+
+.loading-success {
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 21px 0 0 0;
+    display: none;
+}
+.loading-success p {
+    text-align: center;
+    margin: 5px 0 25px 0;
+}
+.loading-success>div:nth-child(1), .luck-open-success>div:nth-child(1) {
+    font-family: iconfont;
+    font-size: 5rem;
+    color: rgb(65, 204, 139);
+    text-align: center;
+}
+.luck-open-success {
+    flex-flow: column nowrap;
+    display: none;
+}
+.luck-open-success img {
+     width: 85px;
+}
+.luck-open-mes {
+    text-align: center;
+}
+.luck-open-box {
+    width: 259px;
+    height: 307px;
+}
+.luck-explain {
+    text-align: center;
+    line-height: 25px;
+    padding: 10px 0 15px;
+}
