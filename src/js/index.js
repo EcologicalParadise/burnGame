@@ -209,8 +209,8 @@ function openTime() {
         // 获取最新奖池
         async function getOpenPool(_fromAddr) {
             hpContract.methods.getOpenPool().call({from: _fromAddr}).then(function (data) {
+                openPoolList = data;
                 if (data.length  > 1) {
-                    openPoolList = data;
                     let str = `<div class='activity-name1'>历史幸运儿</div>`;
                     data = Array.from(data);
                     data.reverse();
