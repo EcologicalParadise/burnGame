@@ -187,9 +187,8 @@ background: #ffc107;
     padding: 15px 0 15px 5%;
 }
 .history-num {
-    padding: 0 9px 0 0;
+    padding: 28px 9px 0 0;
     display: flex;
-    align-items: center;
 }
 .mask{
     width: 100%;
@@ -350,8 +349,10 @@ background: #ffc107;
     padding: 0px 25px 15px;
     line-height: 20px;
 }
-
-https://ecologicalparadise.github.io/burnGame
+.history-dog-luckname {
+    padding: 10px 0;
+}
+/* https://ecologicalparadise.github.io/burnGame
 185.199.110.153
-https://ecologicalparadise.github.io/burnGame/
+https://ecologicalparadise.github.io/burnGame/ */
 
