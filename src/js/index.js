@@ -230,7 +230,23 @@ function openTime() {
                             luckDogReward3,
                             openReward,
                             openUser,
+                            luckLust
                         } = _v;
+
+                        let tr = '';
+                        try {
+                           luckLust.forEach((_v) => {
+                               tr += `
+                               <div>
+                                    <span>${formatAddress(_v)}</span>
+                                    <span>${openReward}&nbsp;leeks</span>
+                                </div>
+                               `
+                            })
+                        } catch(err) {
+                            
+                        }
+
                         str += `
                         <div class='history-dog-item'>
                         <div class='history-num'>第${data.length - i - 2}期</div>
@@ -241,36 +257,27 @@ function openTime() {
                                  <span>${openReward}&nbsp;leeks</span>
                              </div>
                             <div>
-                                 <span>第一名：</span>
+                                 <span>韭神：</span>
                                  <span>${formatAddress(luckDog1)}</span>
                                  <span>${luckDogReward1}&nbsp;leeks</span>
                             </div>
                             <div>
-                                 <span>第二名：</span>
+                                 <span>韭仙：</span>
                                  <span>${formatAddress(luckDog2)}</span>
                                  <span>${luckDogReward2}&nbsp;leeks</span>
                              </div>
                              <div>
-                                 <span>第三名：</span>
+                                 <span>韭鬼：</span>
                                  <span>${formatAddress(luckDog3)}</span>
                                  <span>${luckDogReward3}&nbsp;leeks</span>
                              </div>
                              <p class='history-dog-luckname'>幸运奖励</p>
-                             <div>
-                                 <span>${formatAddress(luckDog3)}</span>
-                                 <span>${luckDogReward3}&nbsp;leeks</span>
-                             </div>
-                             <div>
-                                 <span>${formatAddress(luckDog3)}</span>
-                                 <span>${luckDogReward3}&nbsp;leeks</span>
-                             </div>
-                             <div>
-                                 <span>${formatAddress(luckDog3)}</span>
-                                 <span>${luckDogReward3}&nbsp;leeks</span>
-                             </div>
+                            ${tr}
                             </div>
                         </div>
                          `
+                        
+                         
                     });
                     historyDogBox.html(str);
                 }
