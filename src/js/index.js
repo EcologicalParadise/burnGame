@@ -17,7 +17,7 @@ function openTime() {
     let type = false;
     let str = d.getTime().toString();
     let time = parseInt(str.slice(0, str.length - 3));
-    // let time = 1624359360; // todo
+    // let time = 1624536000; // todo
     let num;
 
     
@@ -25,7 +25,7 @@ function openTime() {
     if (t < 39600) {
         num = 39600 - t;
     } else if (t > 41400) {
-        num = 41400 - t + 86400;
+        num = 39600 - t + 86400;
     } else {
         type = true;
     }
@@ -49,11 +49,8 @@ function openTime() {
                 if (window.ethereum) {
                     try {
                         await window.ethereum.enable().then(function (accounts) {
-                            // let currentProvider = new Web3.providers.HttpProvider('https://http-testnet.hecochain.com');
-                            // web3.setProvider(currentProvider);
                             web3.setProvider(window.ethereum);
                             web3.eth.defaultAccount = accounts[0];
-                            
                             resove({
                                 type: 0,
                                 value: accounts[0]
@@ -392,7 +389,9 @@ function openTime() {
         confirmExchange.click(() => {
             let _v = addInput.val();
             if ((/(^[1-9]\d*$)/.test(_v))) {
-                if (_v < tokenMaxNum) {
+            let _v = addInput.val();
+                _v = Number(_v);
+                if (_v <= tokenMaxNum) {
                 // if (true) {
                     addDestruction.hide();
                     loading.show();
