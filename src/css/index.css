@@ -56,27 +56,43 @@ body {
 .activity-name {
     font-size: 2rem;
     text-align: center;
-    padding: 35px 0 0 0;
+    padding: 8px 0 0 0;
 }
 .activity-item {
     background-color: #01481d;
     width: 90%;
-    height: 350px;
     border-radius: 15px;
     margin: 15px auto;
-    padding: 25px 15px;
+    padding: 5px 0 15px 0;
     display: flex;
     flex-flow: column nowrap;
+    box-shadow: 2px 2px 5px rgb(0 0 0 / 50%);
+    position: relative;
+}
+.activity-gngle {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100px;
+    height: 67px;
+    background-color: #4caf50;
+    border-radius: 15px 0 38px 0;
+    font-size: 1.4rem;
+    text-align: center;
+    line-height: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .activity-logo img {
-    height: 10rem;
+    height: 16rem;
 }
 .activity-logo {
    display: flex;
    justify-content: center;
 }
 .activity-time {
-    padding: 15px 0;
+    padding: 5px 0 15px 0;
     text-align: center;
     font-size: 1.2rem;
 }
@@ -348,10 +364,35 @@ background: #ffc107;
 .game-rules {
     padding: 0px 25px 15px;
     line-height: 20px;
+    display: none;
+}
+.game-rules-btn {
+    font-family: iconfont;
+    font-size: 1.5rem;
+    cursor: pointer;
 }
 .history-dog-luckname {
     padding: 10px 0;
 }
+.open-game-box {
+    display: flex;
+    padding: 0px 25px 15px;
+}
+
+.activity-explain-waiting {
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
 /* https://ecologicalparadise.github.io/burnGame
 185.199.110.153
 https://ecologicalparadise.github.io/burnGame/ */

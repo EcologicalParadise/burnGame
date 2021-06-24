@@ -11,6 +11,63 @@ function formatCoin(_num, _t) {
     let n = new BigNumber(_num);
     return _t ?  n.multipliedBy(sc) : n.dividedBy(sc);
 }
+function formatTime(_time) {
+    return _time < 10 ? `0${_time}` : _time;
+}
+
+function scrollStart(arr = []) {
+    let settings = {
+    speeds: 25, //滚动的速度,单位ms
+    isPause: true, //滚动后每个消息是否需要暂停，true和false,
+    isHover:true, //鼠标悬停是否需要暂停
+    };
+
+    let  ul = document.getElementById("scroll-list");
+    arr.forEach((item) => {
+        let li = document.createElement("li");
+        li.innerHTML = item;
+        ul.appendChild(li);
+    });
+    let currentTop = parseInt(window.getComputedStyle(ul).top);
+
+    function run() {
+    currentTop--;
+    ul.style.top = currentTop + "px";
+    if (currentTop == (arr.length - 1) * -50) {
+        let li = document.createElement("li");
+        li.innerHTML = arr[0];
+        ul.appendChild(li);
+    };
+    if (currentTop == arr.length * -50) {
+        currentTop = 0;
+        ul.style.top = currentTop + "px";
+        let li = document.querySelectorAll("li");
+        ul.removeChild(li[li.length - 1]);
+    }
+    if (settings.isPause) {
+        if (currentTop % 50 == 0) {
+        clearInterval(timer);
+        setTimeout(function () {
+            timer = setInterval(run, settings.speeds);
+        }, 3000);
+        }
+    }
+    }
+    let timer = setInterval(run, settings.speeds);
+
+    ul.onmouseover = function () {
+        if(settings.isHover){
+            clearInterval(timer);
+        }
+    };
+    ul.onmouseleave = function () {
+        if(settings.isHover){
+            timer = setInterval(run, settings.speeds);
+        }
+    };
+
+}
+
 
 function openTime() {
     let d = new Date();
@@ -33,7 +90,7 @@ function openTime() {
     return {
         type,
         num,
-        data: type ? ['00', '00', '00'] : [parseInt(num / 3600), parseInt(num % 3600 / 60), parseInt(num % 3600 % 60)]
+        data: type ? ['00', '00', '00'] : [formatTime(parseInt(num / 3600)), formatTime(parseInt(num % 3600 / 60)), formatTime(parseInt(num % 3600 % 60))]
     };
 };
 
@@ -74,6 +131,7 @@ function openTime() {
     const myCount = $('#my-count');
     const myToken = $('#my-token');
     const allLeeks = $('#all-leeks');
+    const estructionLeeks = $('#estruction-leeks');
     const bt1 = $('#btn-1');
     const bt2 = $('#btn-2');
     const bt5 = $('#btn-5');
@@ -104,6 +162,7 @@ function openTime() {
     const luckCloseNone = $('#luck-close-none');
     const luckOpenOther = $('#luck-open-other');
     const historyDogBox = $('#history-dog-box');
+    const gameRulesBtn = $('#game-rules-btn');
 
     let balance = 0;
     let tokenMaxNum = 0;
@@ -177,8 +236,6 @@ function openTime() {
     
     if (data.type === 0) {
         let fromAddr = data.value;
-        console.log(LeeksContract.methods);
-        console.log(hpContract.methods);
         address.text(formatAddress(fromAddr));
         
         function getBalance(_fromAddr) {
@@ -194,14 +251,39 @@ function openTime() {
             hpContract.methods.getLucks().call({from: _fromAddr}).then(function (data) {
                 let _count = 0;
                 let _myCount = 0;
+                let dh = {};
+
                 data.forEach((_v) => {
-                    if (_v.addres.toLocaleUpperCase() === _fromAddr.toLocaleUpperCase()) {
+                    let ads = _v.addres.toLocaleUpperCase();
+                    if (ads === _fromAddr.toLocaleUpperCase()) {
                         _myCount ++;
                     }
                     _count += parseInt( _v.voteCount);
+                    if (dh[ads] !== undefined) {
+                        dh[ads].push(_v);
+                    } else {
+                        dh[ads] = [_v];
+                    }
                 });
                 myToken.text(_myCount);
                 allLeeks.text(_count);
+                estructionLeeks.text(_count * 0.1);
+                let newDh = [];
+                for (let key in dh) {
+                    newDh.push({
+                        ads: key,
+                        data: dh[key],
+                    });
+                }
+         
+
+                let dharr = newDh.sort((a,b) => {
+                    return b.data.length - a.data.length;
+                }).slice(0, 5).map((_data) => {
+                    let {ads, data} = _data;
+                    return `${formatAddress(ads)}拥有${data.length}个令牌`
+                });
+                scrollStart(dharr);
             });
         };
         getLucks(fromAddr);
@@ -215,8 +297,6 @@ function openTime() {
                     data = Array.from(data);
                     data.reverse();
                     showData = data.slice(1, 6);
-                    console.log(showData)
-                    console.log(data)
                     showData.forEach((_v, i) =>{
                         let {
                             luckDog1,
@@ -246,7 +326,7 @@ function openTime() {
 
                         str += `
                         <div class='history-dog-item'>
-                        <div class='history-num'>第${data.length - i - 2}期</div>
+                        <div class='history-num'>第${data.length - i - 1}期</div>
                         <div>
                              <div>
                                  <span>抢头奖：</span>
@@ -314,7 +394,6 @@ function openTime() {
             mask.css('display', 'flex');
             loading.show();
             hpContract.methods.openLuck().send({from: fromAddr}).then(function (data) {
-                console.log(data)
                 hpContract.methods.getOpenPool().call({from: fromAddr}).then(function (data) {
                     let {
                         luckDog1,
@@ -342,7 +421,6 @@ function openTime() {
                 getBalance(fromAddr);
                 getLucks(fromAddr);
             }).catch((data) => {
-                console.log(data)
                loadingIng.hide();
                luckOpenNoneMes.html('真遗憾，下次再接再厉！');
                luckOpenNone.css('display', 'flex');
@@ -420,7 +498,7 @@ function openTime() {
             loading.hide();
             loadingSuccess.hide();
             loadingIng.show();
-        })
+        });
 
         loadingBtErr.click(function() {
             loading.hide();
@@ -428,6 +506,10 @@ function openTime() {
             loadingSuccess.hide();
             loadingErr.hide();
             loadingIng.show();
+        });
+
+        gameRulesBtn.click(function() {
+            $('#game-rules-tip').toggle();
         })
     }
 

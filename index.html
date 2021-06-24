@@ -35,13 +35,27 @@
                 <span style='color: #ffbf01; font-weight: bold;' id='all-leeks'>0</span>
                 <span>leeks</span>
             </div>
+            <div>
+                <span>本轮销毁数:</span>
+                <span style='color: #ffbf01; font-weight: bold;' id='estruction-leeks'>0</span>
+                <span>leeks</span>
+            </div>
        </div>
        <div>
            <img width="50px" src="./src/img/jl.svg" alt="">
        </div>
     </div>
+    <div class="scroll-box">
+        <ul id='scroll-list'>
+           
+        </ul>
+    </div>
     <div class='activity-name'>黑洞燃烧游戏</div>
     <div class='activity-item'>
+        <div class='activity-gngle'>
+            leeks<br>
+            燃烧池
+        </div>
         <div class='activity-logo'>
             <img src="https://cdn.jsdelivr.net/gh/mdexSwap/mdexSwap.github.io@2.0/img/footer-jx.8ffe4eb3.png" alt="">
         </div>
@@ -59,7 +73,7 @@
         <button class='btn-2' style='display: none' id='btn-6'>即将开奖</button>
         <button class='btn-2' style='display: none' id='btn-7'>即将开始下一期</button>
         <button class='btn-2' style='display: none' id='btn-2'>解锁功能</button>
-        <button class='btn-1' style='display: none' id='btn-5'>开启奖励</button>
+        <button class='btn-1' style='display: none' id='btn-5'>抢头奖</button>
         <p class='activity-explain'>
             参与燃烧leeks，获取幸运游戏抽奖资格
             <br>
@@ -71,9 +85,18 @@
             <br>
             韭鬼：燃烧池10%的奖励
         </p>
+        <div class='destruction-get' style='padding: 0;'>
+            <a href="https://hecoinfo.com/address/0x9a1da1f8E3e2b9F4E217141b0aD23190238ba3B6">合约地址</a>
+        </div>
     </div>
-    <p class='game-rules'>
-        游戏规则<br/>
+    
+    <div class="open-game-box"  id='game-rules-btn'>
+        <span>游戏规则&nbsp;</span>
+        <div class='game-rules-btn'>
+            &#xe646;
+        </div>
+    </div>
+    <p class='game-rules' id='game-rules-tip'>
         每天燃烧一次leeks<br/>
         每天19:30 - 下一天 18:55 每位小伙伴可以参与往燃烧池注入leeks<br/>
         18:55 - 19:00 暂停往燃烧池注入leeks，等待抢燃烧头奖<br/>
@@ -92,41 +115,27 @@
             您投入的LEEKS将会被销毁，请慎重考虑后参与.
         </span>
     </p>
+    <div class='activity-item'>
+        <div class='activity-gngle'>
+            leeks + leek<br>
+            燃烧池
+        </div>
+        <div class='activity-logo'>
+            <img src="https://cdn.jsdelivr.net/gh/mdexSwap/mdexSwap.github.io@2.0/img/footer-hx.d0aeec68.png" alt="">
+        </div>
+        <p class='activity-explain-waiting'>
+            参与燃烧leeks，赢取leek
+        </p>
+        <button class='btn-2' style='margin: 25px auto'>即将开放</button>
+    </div>
     <div class='history-dog' id='history-dog-box'>
-        <!-- <div class='activity-name1'>历史幸运儿</div>
-        <div class='history-dog-item'>
-           <div class='history-num'>第一期</div>
-           <div>
-                <div>
-                    <span>抢头奖：</span>
-                    <span>5000leeks</span>
-                    <span>0x483c****2aa3b3d9</span>
-                </div>
-               <div>
-                    <span>第一名：</span>
-                    <span>5000leeks</span>
-                    <span>0x483c****2aa3b3d9</span>
-               </div>
-               <div>
-                    <span>第二名：</span>
-                    <span>5000leeks</span>
-                    <span>0x483c****2aa3b3d9</span>
-                </div>
-                <div>
-                    <span>第三名：</span>
-                    <span>5000leeks</span>
-                    <span>0x483c****2aa3b3d9</span>
-                </div>
-            </div>
-        </div> -->
-        
     </div>
 </div>
 <div class='mask' id='mask'>
     <div class='add-destruction' id='add-destruction'>
         <button class='btn-c' id='btn-close'>&#xe7ce;</button>
         <div class='activity-logo'>
-            <img src="https://cdn.jsdelivr.net/gh/mdexSwap/mdexSwap.github.io@2.0/img/footer-jx.8ffe4eb3.png" alt="">
+            <img style='height: 10rem' src="https://cdn.jsdelivr.net/gh/mdexSwap/mdexSwap.github.io@2.0/img/footer-jx.8ffe4eb3.png" alt="">
         </div>
         <p class='destruction-text'>
             1张令牌 = 1000 leeks
@@ -174,13 +183,7 @@
                 <img src="./src/img/jl.svg" alt="">
             </div>
             <p id='luck-open-mes' class='luck-open-mes'></p>
-            <p class='luck-explain' id='luck-open-other'>
-                <!-- 第1名：566***ASS 获取 500000leeks
-                <br>
-                第1名：566***ASS 获取 500000leeks
-                <br>
-                第1名：566***ASS 获取 500000leeks -->
-            </p>
+            <p class='luck-explain' id='luck-open-other'></p>
             <button class='btn-1 loading-btn' id='luck-close'>好的</button>
         </div>
         <div class='luck-open-success' id='luck-open-none'>
