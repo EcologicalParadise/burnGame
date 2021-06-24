@@ -15,7 +15,10 @@ function formatTime(_time) {
     return _time < 10 ? `0${_time}` : _time;
 }
 
+let isScrollStart = false;
+
 function scrollStart(arr = []) {
+    isScrollStart = true;
     let settings = {
     speeds: 25, //滚动的速度,单位ms
     isPause: true, //滚动后每个消息是否需要暂停，true和false,
@@ -283,7 +286,9 @@ function openTime() {
                     let {ads, data} = _data;
                     return `${formatAddress(ads)}拥有${data.length}个令牌`
                 });
-                scrollStart(dharr);
+                if (isScrollStart === false) {
+                    scrollStart(dharr);
+                }
             });
         };
         getLucks(fromAddr);
