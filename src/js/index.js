@@ -102,6 +102,9 @@ function openTime() {
     let leeksContractAddress = "0x526fd564B1E04d407A5C90fBE29e8eB28557Bf57";
     let hpContractAddress = "0x9a1da1f8E3e2b9F4E217141b0aD23190238ba3B6";
     const web3 = new Web3();
+    
+
+   
 
     function authorization() {
         return new Promise(async function (resove, reject) {

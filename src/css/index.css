@@ -383,9 +383,27 @@ background: #ffc107;
     text-align: center;
 }
 
+.media-list {
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 15px 0 15px 5%;
+    margin: 0 auto;
+    width: 66%;
+    justify-content: space-around;
+}
+.media-list li {
+    text-align: center;
+}
+.media-list a { 
+    text-decoration: none;
+    color: white;
+}
+.media-list span:nth-child(1) {
+    font-family: iconfont;
+    font-size: 3.5rem;
+    display: inline-block;
 
-
-
+}
 
 
 
