@@ -304,7 +304,7 @@ function openTime() {
                     let str = `<div class='activity-name1'>历史幸运儿</div>`;
                     data = Array.from(data);
                     data.reverse();
-                    showData = data.slice(1, 6);
+                    showData = data.slice(1, 3);
                     showData.forEach((_v, i) =>{
                         let {
                             luckDog1,
@@ -334,7 +334,7 @@ function openTime() {
 
                         str += `
                         <div class='history-dog-item'>
-                        <div class='history-num'>第${data.length - i - 1}期</div>
+                        <div class='history-num'>${i === 0 ? '当&nbsp;&nbsp;期' : '上一期'}</div>
                         <div>
                              <div>
                                  <span>抢头奖：</span>
