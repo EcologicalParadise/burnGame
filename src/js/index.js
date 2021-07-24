@@ -5,7 +5,10 @@ const hpABI = [{"inputs":[{"internalType":"contract Leeks","name":"_contractAddr
 function formatAddress(_address) {
     return  _address.substring(0,4) + '*****' + _address.substring(_address.length - 4, _address.length)
 };
-
+function formatCoinXS(_num) {
+    let n = new BigNumber(_num);
+    return n.dividedBy(sc).toFixed(2).toString();
+}
 const sc = '1000000000000000000';
 function formatCoin(_num, _t) {
     let n = new BigNumber(_num);
@@ -99,10 +102,11 @@ function openTime() {
 
 
 (async function () {
-    let leeksContractAddress = "0x526fd564B1E04d407A5C90fBE29e8eB28557Bf57";
-    let hpContractAddress = "0x9a1da1f8E3e2b9F4E217141b0aD23190238ba3B6";
+    let leeksContractAddress = "0xe11a098ce65138e418a0f67d5be3dea1ac227e89";
+    // let hpContractAddress = "0xeFe44aF4664120AE69A06ba7F8079CAcf6789c10";
+    let hpContractAddress = "0x60699259478c79701328c6862c0F768621F6b247";
     const web3 = new Web3();
-    
+
 
    
 
@@ -136,8 +140,8 @@ function openTime() {
     const opt = $('#open-time');
     const myCount = $('#my-count');
     const myToken = $('#my-token');
-    const allLeeks = $('#all-leeks');
-    const estructionLeeks = $('#estruction-leeks');
+    const allLeek = $('#all-leek');
+    const estructionLeek = $('#estruction-leek');
     const bt1 = $('#btn-1');
     const bt2 = $('#btn-2');
     const bt5 = $('#btn-5');
@@ -247,8 +251,9 @@ function openTime() {
         function getBalance(_fromAddr) {
             LeeksContract.methods.balanceOf(_fromAddr).call({from: _fromAddr}).then(function (data) {
                 let _c = formatCoin(data).toString();
-                myCount.text(parseInt(_c));
-                balance = _c;
+                let _v = Number(_c).toFixed(2);
+                myCount.text(_v);
+                balance = _v;
             });
         };
         getBalance(fromAddr);
@@ -258,7 +263,6 @@ function openTime() {
                 let _count = 0;
                 let _myCount = 0;
                 let dh = {};
-
                 data.forEach((_v) => {
                     let ads = _v.addres.toLocaleUpperCase();
                     if (ads === _fromAddr.toLocaleUpperCase()) {
@@ -272,8 +276,8 @@ function openTime() {
                     }
                 });
                 myToken.text(_myCount);
-                allLeeks.text(_count);
-                estructionLeeks.text(_count * 0.1);
+                // allLeek.text(_count / 10);
+                // estructionLeek.text(_count * 0.1);
                 let newDh = [];
                 for (let key in dh) {
                     newDh.push({
@@ -292,6 +296,9 @@ function openTime() {
                 if (isScrollStart === false) {
                     scrollStart(dharr);
                 }
+            });
+            LeeksContract.methods.balanceOf(hpContractAddress).call({from: _fromAddr}).then(function (data) {
+                allLeek.text( new BigNumber(data).dividedBy(sc).toFixed(2).toString())
             });
         };
         getLucks(fromAddr);
@@ -324,7 +331,7 @@ function openTime() {
                                tr += `
                                <div>
                                     <span>${formatAddress(_v)}</span>
-                                    <span>${openReward}&nbsp;leeks</span>
+                                    <span>${formatCoinXS(openReward)}&nbsp;leek</span>
                                 </div>
                                `
                             })
@@ -339,22 +346,22 @@ function openTime() {
                              <div>
                                  <span>抢头奖：</span>
                                  <span>${formatAddress(openUser)}</span>
-                                 <span>${openReward}&nbsp;leeks</span>
+                                 <span>${formatCoinXS(openReward)}&nbsp;leek</span>
                              </div>
                             <div>
                                  <span>韭神：</span>
                                  <span>${formatAddress(luckDog1)}</span>
-                                 <span>${luckDogReward1}&nbsp;leeks</span>
+                                 <span>${formatCoinXS(luckDogReward1)}&nbsp;leek</span>
                             </div>
                             <div>
                                  <span>韭仙：</span>
                                  <span>${formatAddress(luckDog2)}</span>
-                                 <span>${luckDogReward2}&nbsp;leeks</span>
+                                 <span>${formatCoinXS(luckDogReward2)}&nbsp;leek</span>
                              </div>
                              <div>
                                  <span>韭鬼：</span>
                                  <span>${formatAddress(luckDog3)}</span>
-                                 <span>${luckDogReward3}&nbsp;leeks</span>
+                                 <span>${formatCoinXS(luckDogReward3)}&nbsp;leek</span>
                              </div>
                              <p class='history-dog-luckname'>幸运奖励</p>
                             ${tr}
@@ -389,7 +396,7 @@ function openTime() {
         bt1.click(() => {
             mask.css('display', 'flex');
             bd.addClass('bd-hide');
-            let _c = new BigNumber(balance).dividedBy(1000);
+            let _c = new BigNumber(balance).dividedBy(0.1);
             let _m = parseInt(_c.toNumber());
             maxToken.text(_m);
             tokenMaxNum = _m;
@@ -415,14 +422,14 @@ function openTime() {
                     } = data[data.length - 2];
                     loading.addClass('luck-open-box');
                     loadingIng.hide();
-                    luckOpenMes.html(`恭喜你，抢到头奖!</br>获取${openReward}leeks`);
+                    luckOpenMes.html(`恭喜你，抢到头奖!</br>获取${formatCoinXS(openReward)}leek`);
                     luckOpen.css('display', 'flex');
                     luckOpenOther.html(`
-                    第1名：${formatAddress(luckDog1)} 获取 ${luckDogReward1}leeks
+                    第1名：${formatAddress(luckDog1)} 获取 ${formatCoinXS(luckDogReward1)}leek
                     <br>
-                    第2名：${formatAddress(luckDog2)} 获取 ${luckDogReward2}leeks
+                    第2名：${formatAddress(luckDog2)} 获取 ${formatCoinXS(luckDogReward2)}leek
                     <br>
-                    第3名：${formatAddress(luckDog3)} 获取 ${luckDogReward3}leeks
+                    第3名：${formatAddress(luckDog3)} 获取 ${formatCoinXS(luckDogReward3)}leek
                     `);
                 });
                 getOpenPool(fromAddr);
