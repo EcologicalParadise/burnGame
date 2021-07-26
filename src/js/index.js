@@ -102,7 +102,9 @@ function openTime() {
 
 
 (async function () {
+    let lpContractAddress = "0x919d5a1b2aa0ccd02af36158bbe47b12e582e762";
     let leeksContractAddress = "0xe11a098ce65138e418a0f67d5be3dea1ac227e89";
+    let usdtContractAddress = "0xa71edc38d189767582c38a3145b5873052c3e47a";
     // let hpContractAddress = "0xeFe44aF4664120AE69A06ba7F8079CAcf6789c10";
     let hpContractAddress = "0x60699259478c79701328c6862c0F768621F6b247";
     const web3 = new Web3();
@@ -137,6 +139,7 @@ function openTime() {
     let allowance = false;
     let openPoolList = [];
     const address = $('#my-address');
+    const allUsdt = $('#all-usdt');
     const opt = $('#open-time');
     const myCount = $('#my-count');
     const myToken = $('#my-token');
@@ -176,7 +179,9 @@ function openTime() {
 
     let balance = 0;
     let tokenMaxNum = 0;
+    const lpContract = new web3.eth.Contract(leeksABI, lpContractAddress);
     const LeeksContract = new web3.eth.Contract(leeksABI, leeksContractAddress);
+    const UsdtContract = new web3.eth.Contract(leeksABI, usdtContractAddress);
     const hpContract = new web3.eth.Contract(hpABI, hpContractAddress);
 
 
@@ -258,8 +263,8 @@ function openTime() {
         };
         getBalance(fromAddr);
 
-        function getLucks(_fromAddr) {
-            hpContract.methods.getLucks().call({from: _fromAddr}).then(function (data) {
+        async function getLucks(_fromAddr) {
+            hpContract.methods.getLucks().call({from: _fromAddr}).then(async function (data) {
                 let _count = 0;
                 let _myCount = 0;
                 let dh = {};
@@ -297,8 +302,16 @@ function openTime() {
                     scrollStart(dharr);
                 }
             });
+
+            let unum = await UsdtContract.methods.balanceOf(lpContractAddress).call({from: _fromAddr});
+            let lnum = await LeeksContract.methods.balanceOf(lpContractAddress).call({from: _fromAddr});
+            const ub = BigInt(unum);
+            const lb = BigInt(lnum);
+            let price = ub / lb;
             LeeksContract.methods.balanceOf(hpContractAddress).call({from: _fromAddr}).then(function (data) {
-                allLeek.text( new BigNumber(data).dividedBy(sc).toFixed(2).toString())
+                allLeek.text( new BigNumber(data).dividedBy(sc).toFixed(2).toString());
+
+                allUsdt.text( new BigNumber(data).dividedBy(sc).multipliedBy(price).toFixed(2).toString())
             });
         };
         getLucks(fromAddr);
